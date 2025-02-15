@@ -68,14 +68,14 @@ class OcpScalarSymbol:
         self,
         name: str,
         bounds: Optional[Limits],
-        guess: Optional[npt.NDArray] = None,
+        guess: Optional[float] = None,
         scale: float = 1.0,
         units: Optional[str] = None,
     ) -> None:
         self.name: str = name
         self.sym_: ca.MX = ca.MX.sym(name)
         self.bounds: Limits = Limits() if bounds is None else bounds
-        self.guess: float = 0 if guess is None else guess
+        self.guess: float = 0.0 if guess is None else guess
         self.scale: float = scale
         self.units: Optional[str] = units
 
@@ -144,7 +144,7 @@ class OcpPhase:
         guess: Optional[float] = None,
         scale: float = 1.0,
         units: Optional[str] = None,
-    ) -> OcpVectorSymbol:
+    ) -> OcpScalarSymbol:
         if name in self.param:
             raise ValueError(f"Param '{name}' is already defined.")
         sym: OcpScalarSymbol = OcpScalarSymbol(
