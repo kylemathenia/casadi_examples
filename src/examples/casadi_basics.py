@@ -1,4 +1,4 @@
-"""Examples of som casadi basics."""
+"""Examples of some casadi basics."""
 
 import casadi as ca
 import numpy as np
