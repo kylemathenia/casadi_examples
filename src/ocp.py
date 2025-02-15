@@ -6,6 +6,7 @@ import numpy as np
 import numpy.typing as npt
 
 from solution import OcpTrajectory, OcpPhaseSolution
+from options import OcpOptions
 from _ocp_solver import solve_ocp
 
 
@@ -83,6 +84,7 @@ class OcpPhase:
         self.param: dict[str, OcpScalarSymbol] = {}
         self.ode: dict[str, OcpVectorExpr] = {}
         self.path: dict[str, OcpVectorExpr] = {}
+        self.options: OcpOptions = OcpOptions()
 
     @property
     def guess(self) -> OcpTrajectory:
