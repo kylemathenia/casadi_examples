@@ -5,19 +5,7 @@ import casadi as ca
 import numpy as np
 import numpy.typing as npt
 
-
-class Limits:
-    def __init__(self, low: float = -np.inf, upp: float = np.inf) -> None:
-        self.low: float = low
-        self.upp: float = upp
-
-
-class OcpTrajectory:
-    def __init__(self) -> None:
-        self.time: npt.NDArray = np.array([])
-        self.state: dict[str, npt.NDArray] = {}
-        self.control: dict[str, npt.NDArray] = {}
-        self.parameter: dict[str, float] = {}
+from solution import OcpTrajectory, OcpPhaseSolution, Limits
 
 
 class OcpVectorSymbol:
@@ -88,6 +76,16 @@ class OcpPhase:
         self.param: dict[str, OcpScalarSymbol] = {}
         self.ode: dict[str, OcpVectorExpr] = {}
         self.path: dict[str, OcpVectorExpr] = {}
+
+    @property
+    def guess(self) -> OcpTrajectory:
+        # TODO: Combine all the guesses in the problem elements into a single trajectory.
+        raise NotImplementedError
+
+    @guess.setter
+    def guess(self, traj: OcpTrajectory) -> None:
+        # TODO: Want to be able to set the guess with a trajectory, perhaps from a prev solution.
+        raise NotImplementedError
 
     def add_state(
         self,
@@ -201,12 +199,5 @@ class OcpPhase:
         self.path[name] = expr
         return vec_expr
 
-    @property
-    def guess(self) -> OcpTrajectory:
-        # TODO: Combine all the guesses in the problem elements into a single trajectory.
-        raise NotImplementedError
-
-    @guess.setter
-    def guess(self, traj: OcpTrajectory) -> None:
-        # TODO: Want to be able to set the guess with a trajectory, perhaps from a prev solution.
-        raise NotImplementedError
+    def solve(self) -> OcpPhaseSolution:
+        return solve_ocp(self)
