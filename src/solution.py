@@ -1,11 +1,7 @@
+"""Optimal control problem solution related structures."""
+
 import numpy as np
 import numpy.typing as npt
-
-
-class Limits:
-    def __init__(self, low: float = -np.inf, upp: float = np.inf) -> None:
-        self.low: float = low
-        self.upp: float = upp
 
 
 class OcpTrajectory:

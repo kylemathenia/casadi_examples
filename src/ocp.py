@@ -5,7 +5,14 @@ import casadi as ca
 import numpy as np
 import numpy.typing as npt
 
-from solution import OcpTrajectory, OcpPhaseSolution, Limits
+from solution import OcpTrajectory, OcpPhaseSolution
+from _ocp_solver import solve_ocp
+
+
+class Limits:
+    def __init__(self, low: float = -np.inf, upp: float = np.inf) -> None:
+        self.low: float = low
+        self.upp: float = upp
 
 
 class OcpVectorSymbol:
