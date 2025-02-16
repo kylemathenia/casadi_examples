@@ -1,4 +1,5 @@
 """Optimal control problem solution related structures."""
+
 from __future__ import annotations
 import copy
 import numpy as np
@@ -35,7 +36,7 @@ class OcpTrajectory:
         return new_traj
 
 
-# TODO
+# TODO: Make the actual solution interpolant that corresponds with the discretization method.
 class OcpPhaseSolution:
     def __init__(self) -> None:
         raise NotImplementedError
