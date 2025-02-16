@@ -1,5 +1,6 @@
 """A 1d temporal mesh for optimal control problems."""
 
+from __future__ import annotations
 import numpy as np
 import numpy.typing as npt
 
@@ -57,3 +58,8 @@ class OcpMesh:
     @property
     def grid_delta_tau(self) -> npt.NDArray:
         return np.diff(self.col_pt_tau)
+
+    @classmethod
+    def from_evenly_distributed(cls, n_col_pt: int) -> OcpMesh:
+        col_pt_tau: npt.NDArray = np.linspace(0, 1, n_col_pt)
+        return cls(col_pt_tau=col_pt_tau)
