@@ -5,6 +5,7 @@ Betts, J. T. (2020). Practical Methods for Optimal Control Using Nonlinear Progr
 Society for Industrial and Applied Mathematics.
 """
 
+from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from solution import OcpPhaseSolution
