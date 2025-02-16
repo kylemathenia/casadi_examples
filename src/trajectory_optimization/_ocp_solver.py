@@ -1,5 +1,6 @@
 """This module manages the solving process for the optimal control problem."""
 
+from __future__ import annotations
 from typing import TYPE_CHECKING
 import _hermite_simpson
 
